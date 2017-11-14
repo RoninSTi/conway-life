@@ -45,11 +45,11 @@ function getNeighbors(cell) {
   return neighbors;
 }
 
-function liveNeighbors(cell, alive) {
+function liveNeighbors(cell) {
   const neighbors = getNeighbors(cell);
   let count = 0;
   neighbors.forEach((pair, index) => {
-    if (isAlive(pair, alive)) {
+    if (isAlive(pair)) {
       count++;
     }
   });
@@ -57,9 +57,10 @@ function liveNeighbors(cell, alive) {
   return count;
 }
 
-function isAlive(cell, alive) {
+function isAlive(cell) {
+  const state = store.getState();
   let status = false;
-  alive.forEach((pair, index) => {
+  state.life.alive.forEach((pair, index) => {
     if(pair.row === cell.row && pair.col === cell.col) {
       status = true; 
     }
@@ -68,14 +69,14 @@ function isAlive(cell, alive) {
   return status;
 }
 
-export default function cellStatus(cell, alive) {
-  switch (liveNeighbors(cell, alive)) {
+export default function cellStatus(cell) {
+  switch (liveNeighbors(cell)) {
     case 0:
       return 'dead';
     case 1:
       return 'dead';
     case 2:
-      if (isAlive(cell, alive)) {
+      if (isAlive(cell)) {
         return 'alive';
       } else {
         return 'dead';

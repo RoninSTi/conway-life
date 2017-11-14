@@ -58,7 +58,7 @@ export default function(state=initialState, action) {
       for (let r = 0; r < state.grid.rows; r++) {
         for (let c = 0; c < state.grid.cols; c++) {
           const cell = { row: r, col: c }
-          if (cellStatus(cell, state.alive) === 'alive') {
+          if (cellStatus(cell) === 'alive') {
             newAlive.push(cell);
           }
         }
