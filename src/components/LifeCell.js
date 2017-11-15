@@ -4,8 +4,16 @@ import { toggleCell } from '../Actions/Life';
 
 class LifeCell extends Component {
   render() {
+    const color = this.props.status.style === 'alive' ? 'salmon':'black';
+    const cellStyle = {
+        width: '5%',
+        paddingBottom: '5%',
+        display: 'table-cell',
+        border: '1px solid white',
+        backgroundColor: color
+    }
     return(
-      <div className={`cell ${this.props.status.style}`} onClick={e => {
+      <div style={cellStyle} onClick={e => {
         e.preventDefault();
         this.props.onClick();
       }} />

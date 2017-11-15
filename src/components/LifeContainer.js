@@ -50,6 +50,12 @@ class LifeContainer extends Component {
   }
 
   render() {
+    const rowStyle = {
+      display: 'table',
+      tableLayout: 'fixed',
+      width: '100%'
+    }
+
     return(
       <Container>
         <Container>
@@ -58,7 +64,7 @@ class LifeContainer extends Component {
         </div>
           {this.rows.map((row, rIndex) => {
             return (
-              <div className="cell-row" key={rIndex}>
+              <div style={rowStyle} key={rIndex}>
                 {this.cols.map((col, cIndex)  => {
                   return(
                       <LifeCell row={rIndex} col={cIndex} key={cIndex} status={this.determineStatus(rIndex, cIndex)}/>
